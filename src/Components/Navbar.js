@@ -1,10 +1,13 @@
-import { AppBar, Toolbar, Typography, IconButton } from '@mui/material';
+import { AppBar, Toolbar, Typography, IconButton, Box, Drawer } from '@mui/material';
+import { Link } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
 import LoginIcon from '@mui/icons-material/Login';
-import React from 'react';
+import React, {useState} from 'react';
 
 function Navbar() {
+
     return(
+      <Box>
         <AppBar position="relative">
             <Toolbar>
             {/* Drawer Button */}
@@ -12,28 +15,30 @@ function Navbar() {
             size="large"
             edge="start"
             color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
           >
             <MenuIcon />
           </IconButton>
-          
             <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
+                <Link to="/">
                 RentaLife
+                </Link>
             </Typography>
             
             {/* Login Button */}
             <IconButton
             size="large"
             edge="end"
-            color="inherit"
+            sx={{color: 'success.dark'}}
             aria-label="menu"
           >
-                <LoginIcon />
-           </IconButton>
-            
+            <Link to="/login">
+                  <LoginIcon />
+  
+            </Link>
+           </IconButton> 
             </Toolbar>
         </AppBar>
+      </Box>
     )
 }
 

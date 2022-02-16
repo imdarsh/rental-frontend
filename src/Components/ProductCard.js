@@ -1,10 +1,10 @@
 import React from 'react';
 import { Card, CardMedia, CardContent, CardActions, Typography, Button } from '@mui/material';
 
-function ProductCard() {
+function ProductCard({product}) {
     return(
   
-            <Card sx={{ maxWidth: 345 }}>
+      <Card sx={{ Width: 300, m: 2 }}>
       <CardMedia
         component="img"
         alt="green iguana"
@@ -13,16 +13,15 @@ function ProductCard() {
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          Lizard
+          {product.name}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
+          {product.description}
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
+        <Button variant="contained" size="small">See More</Button>
+        <Button variant="contained" size="small">Get On Rent</Button>
       </CardActions>
     </Card>
        
