@@ -2,14 +2,21 @@ import React, { useState } from 'react';
 import RenterNavbar from '../../Components/RenterNavbar';
 import Footer from '../../Components/Footer';
 import { TextField, Container, FormControl, Button, Divider, Typography } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { getToken, setUserSession, setUser } from '../../utils/session';
+import Cookies from 'universal-cookie/es6';
 
-function RenterRegister() {
+
+function RenterRegister(props) {
+
+    const cookies = new Cookies();
 
     const [renter, setRenter] = useState({
         name: "", email: "", contact: "", address:"", city: "", state: "", password: ""
     });
+    
+    let navigate = useNavigate();
 
     const registerrenter = async (e) => {
         e.preventDefault(); 
@@ -22,10 +29,13 @@ function RenterRegister() {
             state: renter.state,
             password: renter.password
         }
-        await axios.post('http://localhost:4000/api/v1/renter/renter-register', renters,{mode: 'cors'})
+
+
+        return await axios.post('http://localhost:4000/api/v1/renter/renter-register', renters,{mode: 'cors'})
           .then(function (response) {
-            console.log(response);
+            setUserSession(response.data.token, response.data.user);
             setRenter({name:"",email:"",contact:"",address:"",city:"",state:"",password:""})
+            navigate('/renter/dashboard');
           })
           .catch(function (error) {
             console.log(error);
