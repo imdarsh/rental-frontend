@@ -1,10 +1,9 @@
 import { AppBar, Toolbar, Typography, IconButton, Box } from '@mui/material';
 import { Link } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
-import LoginIcon from '@mui/icons-material/Login';
 import React from 'react';
 
-function Navbar() {
+function RenterNavbar() {
 
     return(
       <Box>
@@ -23,23 +22,11 @@ function Navbar() {
                 RentaLife
                 </Link>
             </Typography>
-            
-            {/* Login Button */}
-            <IconButton
-            size="large"
-            edge="end"
-            sx={{color: 'success.dark'}}
-            aria-label="menu"
-          >
-            <Link to="/login">
-                  <LoginIcon />
-  
-            </Link>
-           </IconButton> 
+
             </Toolbar>
         </AppBar>
       </Box>
     )
 }
 
-export default Navbar;
+export default RenterNavbar;

@@ -15,7 +15,6 @@ function HomeContent() {
         await axios.get('http://localhost:4000/api/v1/products')
         .then(function (response) {
         // handle success
-        console.log(response.data.product);
         getAllProducts(response.data.product);
         })
         .catch(function (error) {
