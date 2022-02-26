@@ -2,14 +2,18 @@ import React, { useState } from 'react';
 import Navbar from '../Components/Navbar';
 import Footer from '../Components/Footer';
 import { TextField, Container, FormControl, Button, Divider, Typography } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { getToken, setUserSession, setUser } from '../utils/session';
+
 
 function Register() {
 
     const [user, setUser] = useState({
         name: "", email: "", contact: "", address:"", city: "", state: "", password: ""
     });
+
+    let navigate = useNavigate();
 
     const registerUser = async (e) => {
         e.preventDefault(); 
@@ -24,9 +28,10 @@ function Register() {
         }
         await axios.post('http://localhost:4000/api/v1/register', users,{mode: 'cors'})
           .then(function (response) {
-            console.log(response);
+            setUserSession(response.data.token, response.data.user);
             setUser({name:"",email:"",contact:"",address:"",city:"",state:"",password:""})
-          })
+            navigate('/');
+        })
           .catch(function (error) {
             console.log(error);
           });

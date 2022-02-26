@@ -4,14 +4,14 @@ import Footer from '../../Components/Footer';
 import { TextField, Container, FormControl, Button, Divider, Typography } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Loading from '../../Components/Loading';
 import { getToken, setUserSession, setUser } from '../../utils/session';
-import Cookies from 'universal-cookie/es6';
+import ErrorMessage from '../../Components/ErrorMessages';
 
+function RenterRegister() {
 
-function RenterRegister(props) {
-
-    const cookies = new Cookies();
-
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(false);
     const [renter, setRenter] = useState({
         name: "", email: "", contact: "", address:"", city: "", state: "", password: ""
     });
@@ -30,15 +30,19 @@ function RenterRegister(props) {
             password: renter.password
         }
 
-
+        setLoading(true);
         return await axios.post('http://localhost:4000/api/v1/renter/renter-register', renters,{mode: 'cors'})
           .then(function (response) {
             setUserSession(response.data.token, response.data.user);
+            setLoading(false);
             setRenter({name:"",email:"",contact:"",address:"",city:"",state:"",password:""})
+            
             navigate('/renter/dashboard');
           })
           .catch(function (error) {
+            setLoading(false);
             console.log(error);
+            setError(error);
           });
     }
 
@@ -53,6 +57,8 @@ function RenterRegister(props) {
             <RenterNavbar />
             <Container sx={{my: 2}}>
             <Typography variant="h5" sx={{textAlign:'center'}}>Renter Register</Typography>
+            { error && <ErrorMessage variant="error">{error}</ErrorMessage>}      
+            <Typography variant="h5" sx={{textAlign:'center'}}>{ loading && <Loading />}</Typography>
             <form id="register-form" onSubmit={registerrenter}>
             <FormControl sx={{ my:2 }} fullWidth={true}>
                 <TextField label="Name" id="name" size="small" name="name" value={renter.name} onChange={handleChange} />
