@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
 import RenterNavbar from '../../Components/RenterNavbar';
 import Footer from '../../Components/Footer';
-import { TextField, Container, FormControl, Button, Divider, Typography } from '@mui/material';
+import { TextField, Container, Alert, FormControl, Button, Divider, Typography } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Loading from '../../Components/Loading';
 import { getToken, setUserSession, setUser } from '../../utils/session';
-import ErrorMessage from '../../Components/ErrorMessages';
 
 function RenterRegister() {
 
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(false);
+    const [error, setError] = useState(null);
     const [renter, setRenter] = useState({
         name: "", email: "", contact: "", address:"", city: "", state: "", password: ""
     });
@@ -36,13 +35,12 @@ function RenterRegister() {
             setUserSession(response.data.token, response.data.user);
             setLoading(false);
             setRenter({name:"",email:"",contact:"",address:"",city:"",state:"",password:""})
-            
             navigate('/renter/dashboard');
           })
           .catch(function (error) {
-            setLoading(false);
-            console.log(error);
-            setError(error);
+              setError(error.response.data.message);
+              setLoading(false);
+              console.log(error.response.data.message);
           });
     }
 
@@ -57,7 +55,7 @@ function RenterRegister() {
             <RenterNavbar />
             <Container sx={{my: 2}}>
             <Typography variant="h5" sx={{textAlign:'center'}}>Renter Register</Typography>
-            { error && <ErrorMessage variant="error">{error}</ErrorMessage>}      
+            { error && <Alert severity="error">{error}</Alert>}      
             <Typography variant="h5" sx={{textAlign:'center'}}>{ loading && <Loading />}</Typography>
             <form id="register-form" onSubmit={registerrenter}>
             <FormControl sx={{ my:2 }} fullWidth={true}>
