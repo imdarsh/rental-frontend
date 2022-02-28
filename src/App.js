@@ -7,14 +7,13 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Dashboard from './Pages/Renter/Dashboard';
 import CreateProduct from './Pages/Renter/CreateProduct';
 import { getUser, getToken } from './utils/session';
-import PrivateRoute from './Components/PrivateRoute';
+import {PrivateRoute, UserPrivateRoute } from './Components/PrivateRoute';
 import ErrorPage from './Pages/ErrorPage';
 import { useState } from 'react';
 
 // import Routes from './Components/Routes';
 
 function App() {
-
   return (
     <div className="App">
       <Router>
@@ -25,7 +24,7 @@ function App() {
                   <Route path="/renter/renter-login" element={<RenterLogin />}></Route>
                   <Route path="/renter/renter-register" element={<RenterRegister />}></Route>
                   <Route element={<PrivateRoute />}>
-                    <Route exact path="/renter/dashboard" element={<Dashboard />} />
+                    <Route exact path="/renter/dashboard/:_id" element={<Dashboard  />} />
                   <Route path="/renter/create-product" element={<CreateProduct />}></Route>
                   </Route>
                   <Route path="*" element={<ErrorPage />}></Route>

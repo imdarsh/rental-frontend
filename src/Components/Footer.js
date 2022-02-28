@@ -1,4 +1,4 @@
-import { Typography, AppBar, Container, Toolbar } from '@mui/material';
+import { Typography, AppBar, Container, Toolbar, BottomNavigation } from '@mui/material';
 import React from 'react';
 
 function Footer() {
@@ -6,7 +6,7 @@ function Footer() {
     const date = new Date();
 
     return(
-        <AppBar position="static" color="primary">
+        <AppBar color="primary" position='static'>
           <Container maxWidth="md" >
             <Toolbar>
               <Typography  variant="body1" color="inherit">

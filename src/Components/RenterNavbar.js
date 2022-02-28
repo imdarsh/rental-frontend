@@ -1,28 +1,40 @@
 import { AppBar, Toolbar, Typography, IconButton, Box } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { removeUserSession } from '../utils/session';
 import MenuIcon from '@mui/icons-material/Menu';
 import React from 'react';
 
+import LogoutIcon from '@mui/icons-material/Logout';
+
 function RenterNavbar() {
+
+  let navigate = useNavigate();
+
+  const renterLogout = () => {
+      removeUserSession();
+      navigate('/renter/renter-login');
+  }
 
     return(
       <Box>
         <AppBar position="relative">
             <Toolbar>
-            {/* Drawer Button */}
-            <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-          >
-            <MenuIcon />
-          </IconButton>
             <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
-                <Link to="/" >
+                <Link to="/"  style={{ color: 'white', textDecoration: 'none' }} >
                 RentaLife
                 </Link>
             </Typography>
-
+             {/* Login Button */}
+            {
+              localStorage.getItem('token') &&  <IconButton
+              size="large"
+              edge="end"
+              aria-label="menu"
+              onClick={renterLogout}
+            >          
+                    <LogoutIcon style={{ color: 'white' }} />
+             </IconButton>
+            } 
             </Toolbar>
         </AppBar>
       </Box>

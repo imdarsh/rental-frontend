@@ -30,7 +30,7 @@ function RenterLogin() {
             setUserSession(response.data.token, response.data.user);
             setLoading(false);
             setRenter({email: "", password: ""})
-            navigate('/renter/dashboard');
+            navigate(`/renter/dashboard/${response.data.user.userId}`);
         })
         .catch(function (error) {
             setError(error.response.data.message);

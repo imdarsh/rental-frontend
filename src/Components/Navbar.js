@@ -19,7 +19,7 @@ function Navbar() {
             <MenuIcon />
           </IconButton>
             <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
-                <Link to="/" >
+                <Link to="/"  style={{ color: 'white', textDecoration: 'none' }}  >
                 RentaLife
                 </Link>
             </Typography>
@@ -32,7 +32,7 @@ function Navbar() {
             aria-label="menu"
           >
             <Link to="/login">
-                  <LoginIcon />
+                  <LoginIcon   style={{ color: 'white' }}  />
   
             </Link>
            </IconButton> 
