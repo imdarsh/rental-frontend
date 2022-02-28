@@ -5,7 +5,7 @@ import { TextField, Container, Alert, FormControl, Button, Divider, Typography }
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Loading from '../../Components/Loading';
-import { getToken, setUserSession, setUser } from '../../utils/session';
+import { setUserSession } from '../../utils/session';
 
 function RenterRegister() {
 
@@ -40,7 +40,7 @@ function RenterRegister() {
           .catch(function (error) {
               setError(error.response.data.message);
               setLoading(false);
-              console.log(error.response.data.message);
+            //   console.log(error.response.data.message);
           });
     }
 
