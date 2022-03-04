@@ -35,7 +35,7 @@ function RenterRegister() {
             setUserSession(response.data.token, response.data.user);
             setLoading(false);
             setRenter({name:"",email:"",contact:"",address:"",city:"",state:"",password:""})
-            navigate(`/renter/dashboard/${response.data.user.userId}`);
+            navigate(`/renter/dashboard`);
           })
           .catch(function (error) {
               setError(error.response.data.message);

@@ -24,7 +24,7 @@ function App() {
                   <Route path="/renter/renter-login" element={<RenterLogin />}></Route>
                   <Route path="/renter/renter-register" element={<RenterRegister />}></Route>
                   <Route element={<PrivateRoute />}>
-                    <Route exact path="/renter/dashboard/:_id" element={<Dashboard  />} />
+                    <Route exact path="/renter/dashboard" element={<Dashboard  />} />
                   <Route path="/renter/create-product" element={<CreateProduct />}></Route>
                   </Route>
                   <Route path="*" element={<ErrorPage />}></Route>
