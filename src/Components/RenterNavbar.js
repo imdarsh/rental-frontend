@@ -20,8 +20,13 @@ function RenterNavbar() {
         <AppBar position="relative">
             <Toolbar>
             <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
-                <Link to="/"  style={{ color: 'white', textDecoration: 'none' }} >
+                <Link to="/renter/dashboard"  style={{ color: 'white', textDecoration: 'none' }} >
                 RentaLife
+                </Link>
+            </Typography>
+            <Typography>
+            <Link to="/renter/create-product"  style={{ color: 'white', textDecoration: 'none' }} >
+                Add Product
                 </Link>
             </Typography>
              {/* Login Button */}
