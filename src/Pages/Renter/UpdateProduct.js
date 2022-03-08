@@ -1,23 +1,41 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Container, Alert, FormControl, FormLabel, TextField, Typography, InputLabel, Select, MenuItem } from '@mui/material';
 import RenterNavbar from '../../Components/RenterNavbar';
 import Footer from '../../Components/Footer';
 import { useNavigate } from 'react-router-dom';
 import { Label } from '@mui/icons-material';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
-function CreateProduct() {
+function UpdateProduct() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [upload, setUpload] = useState('');
     const categories = ["Furniture", "House", "Clothes", "Vehicle", "Electronics"];
+    const [fetchProduct, setFetchProduct] = useState();
     const [product, setProduct] = useState({
         name: "", price: "", deposit: "", description: "", image: "", category: "", userId: ""
     });
 
     let navigate = useNavigate();
+
+    const { id } = useParams();
+
+    useEffect(() => {
+        getProducts();
+    },[]);
+
+    const getProducts = async () => {
+        await axios(`http://localhost:4000/api/v1/products/${id}`)
+        .then(function (response) {
+            setProduct(response.data.product);
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
+    }
     
-    const addProduct = async (e) => {
+    const editProduct = async (e) => {
         e.preventDefault();
         const formData = new FormData();
         formData.append("name",product.name);
@@ -56,7 +74,7 @@ function CreateProduct() {
         <Container sx={{ my:2 }}>
             <Typography variant="h5" sx={{ textAlign: 'center' }}>Create Product</Typography>
             { error && <Alert severity="error">{error}</Alert>}   
-            <form id="create-product" onSubmit={addProduct}>
+            <form id="create-product" onSubmit={editProduct}>
                 <FormControl sx={{ my:2 }} fullWidth={true}>
                     <TextField label="Product Name" name="name" id="name" size="small" value={product.name} onChange={handleChange} required />
                 </FormControl>
@@ -79,6 +97,7 @@ function CreateProduct() {
                         onChange={handleChange}
                         required
                     >
+                    { product.category.value &&  <MenuItem value={product.category.value}>{product.category.value}</MenuItem>}
                       {
                            categories.map((cat, index) => (
                             <MenuItem key={index} value={cat}>{cat}</MenuItem>
@@ -98,4 +117,4 @@ function CreateProduct() {
     )
 }
 
-export default CreateProduct;
+export default UpdateProduct;

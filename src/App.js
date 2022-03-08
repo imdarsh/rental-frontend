@@ -10,6 +10,7 @@ import { getUser, getToken } from './utils/session';
 import {PrivateRoute, UserPrivateRoute } from './Components/PrivateRoute';
 import ErrorPage from './Pages/ErrorPage';
 import { useState } from 'react';
+import UpdateProduct from './Pages/Renter/UpdateProduct';
 
 // import Routes from './Components/Routes';
 
@@ -25,7 +26,9 @@ function App() {
                   <Route path="/renter/renter-register" element={<RenterRegister />}></Route>
                   <Route element={<PrivateRoute />}>
                     <Route exact path="/renter/dashboard" element={<Dashboard  />} />
-                  <Route path="/renter/create-product" element={<CreateProduct />}></Route>
+                    <Route path="/renter/create-product" element={<CreateProduct />}></Route>
+                    <Route path="/renter/edit-product/:id" element={<UpdateProduct />}></Route>
+
                   </Route>
                   <Route path="*" element={<ErrorPage />}></Route>
                 </Routes>

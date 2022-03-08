@@ -9,7 +9,7 @@ function ProductCard({product}) {
         component="img"
         alt="green iguana"
         height="140"
-        image={product.image}
+        src={"http://localhost:4000/uploads/"+product.image}
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
