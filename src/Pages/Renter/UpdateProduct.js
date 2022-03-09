@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Container, Alert, FormControl, FormLabel, TextField, Typography, InputLabel, Select, MenuItem } from '@mui/material';
+import { Button, Container, Alert, FormControl, NativeSelect, TextField, Typography, InputLabel, Select, MenuItem } from '@mui/material';
 import RenterNavbar from '../../Components/RenterNavbar';
 import Footer from '../../Components/Footer';
 import { useNavigate } from 'react-router-dom';
@@ -14,7 +14,7 @@ function UpdateProduct() {
     const categories = ["Furniture", "House", "Clothes", "Vehicle", "Electronics"];
     const [fetchProduct, setFetchProduct] = useState();
     const [product, setProduct] = useState({
-        name: "", price: "", deposit: "", description: "", image: "", category: "", userId: ""
+        name: "", price: "", deposit: "", description: "", category: ""
     });
 
     let navigate = useNavigate();
@@ -28,6 +28,7 @@ function UpdateProduct() {
     const getProducts = async () => {
         await axios(`http://localhost:4000/api/v1/products/${id}`)
         .then(function (response) {
+            console.log(response.data.product.category);
             setProduct(response.data.product);
         })
         .catch(function (error) {
@@ -44,12 +45,11 @@ function UpdateProduct() {
         formData.append("description",product.description);
         formData.append("category",product.category);
         formData.append("userId",JSON.parse(localStorage.getItem('user')).userId);
-        formData.append("image",upload);
         setLoading(true);
-        return await axios.post('http://localhost:4000/api/v1/products', formData,{mode: 'cors'})
+        return await axios.patch(`http://localhost:4000/api/v1/products/${id}`, formData,{mode: 'cors'})
         .then(function (response) {
             setLoading(false);
-            setProduct({ name: "", price: "", deposit: "", description: "", image: "", category: "", userId: ""})
+            setProduct({ name: "", price: "", deposit: "", description: "", category: ""})
             navigate(`/renter/dashboard`);
         })
         .catch(function (error) {
@@ -62,10 +62,6 @@ function UpdateProduct() {
         setProduct({...product,
             [e.target.name]: e.target.value
         });
-    }
-
-    const handleUpload = (e) => {
-        setUpload(e.target.files[0]);
     }
 
     return(
@@ -89,25 +85,18 @@ function UpdateProduct() {
                 </FormControl>
                 <FormControl sx={{ my:2 }} fullWidth={true}>
                 <InputLabel id="demo-simple-select-label">Category</InputLabel>
-                    <Select
-                        id="Category"
-                        name="category"
-                        label="Category"
-                        value={product.category.value}
-                        onChange={handleChange}
-                        required
-                    >
-                    { product.category.value &&  <MenuItem value={product.category.value}>{product.category.value}</MenuItem>}
-                      {
-                           categories.map((cat, index) => (
-                            <MenuItem key={index} value={cat}>{cat}</MenuItem>
-                           ))
-                      }
-                    </Select>
-                </FormControl>
-                <FormControl sx={{ my:2 }} fullWidth={true}>
-                    <FormLabel>Upload Image</FormLabel>
-                    <TextField type="file" name="image" id="image" size="small" onChange={handleUpload} />
+                <NativeSelect
+                    value={product.category.value}
+                    defaultValue={product.category}
+                    onChange={handleChange}
+                >
+                    {
+                        categories.map((cat, index) => (
+                            <option value={cat} key={index}>{cat}</option>
+                        ))
+                    }
+                </NativeSelect>
+
                 </FormControl>
                 <Button variant="contained" size="small" type="submit">Create Product</Button>
             </form>
