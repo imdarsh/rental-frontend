@@ -11,6 +11,7 @@ import {PrivateRoute, UserPrivateRoute } from './Components/PrivateRoute';
 import ErrorPage from './Pages/ErrorPage';
 import { useState } from 'react';
 import UpdateProduct from './Pages/Renter/UpdateProduct';
+import DetailsPage from './Pages/DetailsPage';
 
 // import Routes from './Components/Routes';
 
@@ -24,6 +25,7 @@ function App() {
                   <Route path="/register" element={<Register />}></Route>
                   <Route path="/renter/renter-login" element={<RenterLogin />}></Route>
                   <Route path="/renter/renter-register" element={<RenterRegister />}></Route>
+                  <Route path="/details/:id" element={<DetailsPage />}></Route>
                   <Route element={<PrivateRoute />}>
                     <Route exact path="/renter/dashboard" element={<Dashboard  />} />
                     <Route path="/renter/create-product" element={<CreateProduct />}></Route>
