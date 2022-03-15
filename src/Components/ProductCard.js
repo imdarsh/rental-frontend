@@ -13,7 +13,7 @@ function ProductCard({product}) {
         height="140"
         image={`http://localhost:4000/uploads/${JSON.stringify(product.image).replace(/"/g, "")}`}
       />
-      <CardContent>
+      <CardContent sx={{ my:0 }}>
         <Typography gutterBottom variant="h6" component="div" sx={{ fontWeight: 'bold' }}>
           {product.name}
         </Typography>

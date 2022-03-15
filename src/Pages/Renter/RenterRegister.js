@@ -82,7 +82,7 @@ function RenterRegister() {
                 <Button variant="contained" type="submit" name="register" id="register">Register</Button>
                 </form>
                 <Divider sx={{ my: 2 }} />
-                <Link to="/login">Already have an account? Login</Link>
+                <Link to="/renter/renter-login">Already have an account? Login</Link>
             </Container>
             <Footer />
         </div>

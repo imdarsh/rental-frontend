@@ -1,21 +1,23 @@
 import React, { useState } from 'react';
-import Navbar from '../Components/Navbar';
+import Navbar from '../Components/Navbar'
 import Footer from '../Components/Footer';
-import { TextField, Container, FormControl, Button, Divider, Typography } from '@mui/material';
+import { TextField, Container, Alert, FormControl, Button, Divider, Typography } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { getToken, setUserSession, setUser } from '../utils/session';
-
+import Loading from '../Components/Loading';
+import { setUserSession } from '../utils/session';
 
 function Register() {
 
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
     const [user, setUser] = useState({
         name: "", email: "", contact: "", address:"", city: "", state: "", password: ""
     });
-
+    
     let navigate = useNavigate();
 
-    const registerUser = async (e) => {
+    const registeruser = async (e) => {
         e.preventDefault(); 
         const users = {
             name: user.name,
@@ -26,14 +28,19 @@ function Register() {
             state: user.state,
             password: user.password
         }
-        await axios.post('http://localhost:4000/api/v1/register', users,{mode: 'cors'})
+
+        setLoading(true);
+        return await axios.post('http://localhost:4000/api/v1/register', users,{mode: 'cors'})
           .then(function (response) {
             setUserSession(response.data.token, response.data.user);
+            setLoading(false);
             setUser({name:"",email:"",contact:"",address:"",city:"",state:"",password:""})
-            navigate('/');
-        })
+            navigate(`/`);
+          })
           .catch(function (error) {
-            console.log(error);
+              setError(error.response.data.message);
+              setLoading(false);
+            //   console.log(error.response.data.message);
           });
     }
 
@@ -48,7 +55,9 @@ function Register() {
             <Navbar />
             <Container sx={{my: 2}}>
             <Typography variant="h5" sx={{textAlign:'center'}}>Register</Typography>
-            <form id="register-form" onSubmit={registerUser}>
+            { error && <Alert severity="error">{error}</Alert>}      
+            <Typography variant="h5" sx={{textAlign:'center'}}>{ loading && <Loading />}</Typography>
+            <form id="register-form" onSubmit={registeruser}>
             <FormControl sx={{ my:2 }} fullWidth={true}>
                 <TextField label="Name" id="name" size="small" name="name" value={user.name} onChange={handleChange} />
             </FormControl>

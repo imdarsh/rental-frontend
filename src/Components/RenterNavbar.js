@@ -25,9 +25,11 @@ function RenterNavbar() {
                 </Link>
             </Typography>
             <Typography>
-            <Link to="/renter/create-product"  style={{ color: 'white', textDecoration: 'none' }} >
+            {
+              localStorage.getItem('token') && <Link to="/renter/create-product"  style={{ color: 'white', textDecoration: 'none' }} >
                 Add Product
                 </Link>
+            }
             </Typography>
              {/* Login Button */}
             {
