@@ -12,6 +12,8 @@ import ErrorPage from './Pages/ErrorPage';
 import { useState } from 'react';
 import UpdateProduct from './Pages/Renter/UpdateProduct';
 import DetailsPage from './Pages/DetailsPage';
+import Agreement from './Pages/Agreement';
+import Order from './Pages/Order';
 
 // import Routes from './Components/Routes';
 
@@ -30,12 +32,11 @@ function App() {
                     <Route exact path="/renter/dashboard" element={<Dashboard  />} />
                     <Route path="/renter/create-product" element={<CreateProduct />}></Route>
                     <Route path="/renter/edit-product/:id" element={<UpdateProduct />}></Route>
-
+                    <Route path="/agreement/:id" element={<Agreement />}></Route>
+                    <Route path="/orders/:id" element={<Order />}></Route>
                   </Route>
                   <Route path="*" element={<ErrorPage />}></Route>
                 </Routes>
-                
-      
       </Router>
     </div>
   );
