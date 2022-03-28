@@ -73,7 +73,7 @@ function Navbar() {
                 onClose={handleClose}
               >
                 <MenuItem onClick={handleClose}>My account</MenuItem>
-                <MenuItem onClick={handleClose}>My Orders</MenuItem>
+                <MenuItem onClick={handleClose}><Link to="/my-orders" style={{ textDecoration: 'none', color: 'black' }}>My Orders</Link></MenuItem>
                 <MenuItem onClick={handleClose}>Settings</MenuItem>
                 <MenuItem onClick={userLogout}>Logout</MenuItem>
               </Menu>

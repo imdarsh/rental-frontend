@@ -10,6 +10,7 @@ import { Button } from '@mui/material';
 
 function Agreement() {
 
+    const [disabled, setDisabled] = useState(true);
     const [allProducts, getAllProducts] = useState({
         name: "", price: "", deposit: "", description: "", category: "", image: ""
     });
@@ -39,6 +40,14 @@ function Agreement() {
         navigate(`/orders/${id}`);
     }
 
+    const handleDisabled = () => {
+        setDisabled(false);
+    }
+    
+    const handleEnabled = () => {
+        setDisabled(true);
+    }
+
     return(
         <div>
             <Navbar />
@@ -58,13 +67,14 @@ function Agreement() {
                     </ul>
                     <RadioGroup
                         aria-labelledby="demo-radio-buttons-group-label"
-                        defaultValue="female"
+                        defaultValue="I do not accept all the terms and conditions."
+                        id="condition"
                         name="radio-buttons-group"
                     >
-                        <FormControlLabel value="I accept all the terms and conditions." control={<Radio size="small" />} label="I accept all the terms and conditions." />
-                        <FormControlLabel value="I do not accept all the terms and conditions." control={<Radio size="small" />} label="I do not accept all the terms and conditions." />
+                        <FormControlLabel onClick={handleDisabled} value="I accept all the terms and conditions." control={<Radio size="small" />} label="I accept all the terms and conditions." />
+                        <FormControlLabel onClick={handleEnabled} value="I do not accept all the terms and conditions." control={<Radio size="small" />} label="I do not accept all the terms and conditions." />
                     </RadioGroup>
-                    <Button variant="contained" sx={{ my:2 }} onClick={handleClick}>Continue</Button>
+                    <Button variant="contained" sx={{ my:2 }} onClick={handleClick} disabled={disabled}>Continue</Button>
                 </Typography>
             </Container>
             <Footer />

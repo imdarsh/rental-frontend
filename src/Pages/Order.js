@@ -19,6 +19,8 @@ function Orders() {
         getUser();
     },[]);
 
+    let navigate = useNavigate();
+
     let { id } = useParams();
 
     // get Product Order
@@ -46,7 +48,23 @@ function Orders() {
         })
     }
 
+    // checkout
+    const checkout = async () => {
+        let totals = parseInt(order.deposit)+parseInt(order.price);
+        const orders = {
+            userId: JSON.parse(localStorage.getItem('user')).userId,
+            productId: id,
+            total: totals
+        }
 
+        await axios.post(`http://localhost:4000/api/v1/orders/${id}`, orders, {mode: 'cors'})
+        .then(function (response) {
+            navigate(`/success`);
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
+    }
 
     return (
         <div>
@@ -86,7 +104,7 @@ function Orders() {
             </Grid>
             <Typography sx={{ fontWeight: 'bold', my: 2 }} textAlign="center" variant="h5">Total: &#8377;{parseInt(order.deposit)+parseInt(order.price)}</Typography>
             <Typography>            
-                <Button sx={{ my: 2, width: '90%' }} variant="contained" >Proceed to Rent</Button>
+                <Button sx={{ my: 2, width: '90%' }} variant="contained" onClick={checkout}>Proceed to Rent</Button>
             </Typography>  
             </Container>
             <Footer />

@@ -14,6 +14,8 @@ import UpdateProduct from './Pages/Renter/UpdateProduct';
 import DetailsPage from './Pages/DetailsPage';
 import Agreement from './Pages/Agreement';
 import Order from './Pages/Order';
+import Success from './Pages/Success';
+import MyOrders from './Pages/MyOrders';
 
 // import Routes from './Components/Routes';
 
@@ -34,6 +36,8 @@ function App() {
                     <Route path="/renter/edit-product/:id" element={<UpdateProduct />}></Route>
                     <Route path="/agreement/:id" element={<Agreement />}></Route>
                     <Route path="/orders/:id" element={<Order />}></Route>
+                    <Route path="/success" element={<Success />}></Route>
+                    <Route path="/my-orders" element={<MyOrders />}></Route>
                   </Route>
                   <Route path="*" element={<ErrorPage />}></Route>
                 </Routes>
