@@ -72,7 +72,7 @@ function Navbar() {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}>My account</MenuItem>
+                <MenuItem onClick={handleClose}><Link to="/my-profile" style={{ textDecoration: 'none', color: 'black' }}>My Profile</Link></MenuItem>
                 <MenuItem onClick={handleClose}><Link to="/my-orders" style={{ textDecoration: 'none', color: 'black' }}>My Orders</Link></MenuItem>
                 <MenuItem onClick={handleClose}>Settings</MenuItem>
                 <MenuItem onClick={userLogout}>Logout</MenuItem>

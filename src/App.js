@@ -16,6 +16,8 @@ import Agreement from './Pages/Agreement';
 import Order from './Pages/Order';
 import Success from './Pages/Success';
 import MyOrders from './Pages/MyOrders';
+import MyProfile from './Pages/MyProfile';
+import EditProfile from './Pages/EditProfile';
 
 // import Routes from './Components/Routes';
 
@@ -38,6 +40,8 @@ function App() {
                     <Route path="/orders/:id" element={<Order />}></Route>
                     <Route path="/success" element={<Success />}></Route>
                     <Route path="/my-orders" element={<MyOrders />}></Route>
+                    <Route path="/my-profile" element={<MyProfile />}></Route>
+                    <Route path="/edit-profile/:id" element={<EditProfile />}></Route>
                   </Route>
                   <Route path="*" element={<ErrorPage />}></Route>
                 </Routes>
