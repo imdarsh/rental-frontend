@@ -18,6 +18,7 @@ import Success from './Pages/Success';
 import MyOrders from './Pages/MyOrders';
 import MyProfile from './Pages/MyProfile';
 import EditProfile from './Pages/EditProfile';
+import ChangePassword from './Pages/ChangePassword';
 
 // import Routes from './Components/Routes';
 
@@ -42,6 +43,7 @@ function App() {
                     <Route path="/my-orders" element={<MyOrders />}></Route>
                     <Route path="/my-profile" element={<MyProfile />}></Route>
                     <Route path="/edit-profile/:id" element={<EditProfile />}></Route>
+                    <Route path="/change-password/:id" element={<ChangePassword />}></Route>
                   </Route>
                   <Route path="*" element={<ErrorPage />}></Route>
                 </Routes>
