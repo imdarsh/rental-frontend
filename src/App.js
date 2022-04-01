@@ -19,6 +19,7 @@ import MyOrders from './Pages/MyOrders';
 import MyProfile from './Pages/MyProfile';
 import EditProfile from './Pages/EditProfile';
 import ChangePassword from './Pages/ChangePassword';
+import Category from './Pages/Category';
 
 // import Routes from './Components/Routes';
 
@@ -33,6 +34,7 @@ function App() {
                   <Route path="/renter/renter-login" element={<RenterLogin />}></Route>
                   <Route path="/renter/renter-register" element={<RenterRegister />}></Route>
                   <Route path="/details/:id" element={<DetailsPage />}></Route>
+                  <Route path="/:category" element={<Category />}></Route>
                   <Route element={<PrivateRoute />}>
                     <Route exact path="/renter/dashboard" element={<Dashboard  />} />
                     <Route path="/renter/create-product" element={<CreateProduct />}></Route>

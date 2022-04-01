@@ -28,7 +28,7 @@ function ProductCard({product}) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button variant="contained" size="medium" fullWidth>Get On Rent</Button>
+        <Button sx={{ color: '#E44C62', borderColor: '#E44C62' }} variant="outlined" size="medium" fullWidth>Get On Rent</Button>
       </CardActions>
     </Card>
     </Link>  

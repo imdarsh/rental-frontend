@@ -79,7 +79,7 @@ function Register() {
             <FormControl sx={{ my:2 }} fullWidth={true}>
                 <TextField label="Password" id="password" type="password" size="small" name="password" value={user.password} onChange={handleChange} />
             </FormControl>
-                <Button variant="contained" type="submit" name="register" id="register">Register</Button>
+                <Button variant="contained" type="submit" name="register" id="register" sx={{ background: '#E44C62' }}>Register</Button>
                 </form>
                 <Divider sx={{ my: 2 }} />
                 <Link to="/login">Already have an account? Login</Link>

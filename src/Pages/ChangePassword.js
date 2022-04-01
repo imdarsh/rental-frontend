@@ -65,7 +65,7 @@ function ChangePassword() {
                 <FormControl sx={{ my:2 }} fullWidth>
                     <TextField type="password" size="small" label="Confirm New Password" name="cnfnewpassword" id="cnfnewpassword" onChange={handleChange} value={user.cnfnewpassword} />
                 </FormControl>
-                <Button type="submit" variant="contained" sx={{ my:2 }}>Change Password</Button>
+                <Button type="submit" variant="contained" sx={{ my:2, background: '#E44C62' }}>Change Password</Button>
                 </form>
             </Container>
             <Footer />

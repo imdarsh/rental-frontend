@@ -6,7 +6,7 @@ function Footer() {
     const date = new Date();
 
     return(
-        <AppBar color="primary" position='static'>
+        <AppBar color="primary" position='static' sx={{ background: '#E44C62' }}>
           <Container maxWidth="md" >
             <Toolbar>
               <Typography  variant="body1" color="inherit">

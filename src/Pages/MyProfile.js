@@ -1,4 +1,4 @@
-import { Button, Container, Divider, Typography } from '@mui/material';
+import { Button, Container, Divider, Grid, Typography } from '@mui/material';
 import React,{ useState, useEffect } from 'react';
 import Footer from '../Components/Footer';
 import Navbar from '../Components/Navbar';
@@ -51,7 +51,6 @@ function MyProfile() {
             <Container>
             <Divider sx={{ background: 'black' }} />
             <Typography variant="h3" sx={{textAlign:'center'}}>{ loading && <Loading />}</Typography>
-            <Button sx={{ my:1 }} variant="contained" onClick={editProfile}>Edit Profile</Button>
             <Typography sx={{ my:2 }} fontWeight="bold">Profile Details:</Typography>
             <Typography sx={{ my:1 }} >Name: {user.name}</Typography>
             <Typography sx={{ my:1 }}>Email: {user.email}</Typography>
@@ -60,8 +59,11 @@ function MyProfile() {
             <Typography sx={{ my:1 }}>City: {user.city}</Typography>
             <Typography sx={{ my:1 }}>State: {user.state}</Typography>
             <Divider sx={{ background: 'black' }} />
-            <Button sx={{ my:2 }} variant="contained" onClick={changePassword}>Change Password</Button>
+            <Grid>
+            <Button sx={{ m:1,  background: '#E44C62' }} variant="contained" onClick={editProfile}>Edit Profile</Button>
+            <Button sx={{ my:1, background: '#E44C62' }} variant="contained" onClick={changePassword}>Change Password</Button>
             
+            </Grid>
             </Container>
             <Footer />
         </div>

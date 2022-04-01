@@ -90,7 +90,7 @@ function EditProfile() {
             <FormControl sx={{ my:2 }} fullWidth={true}>
                 <TextField label="State" id="state" size="small" name="state" value={user.state} onChange={handleChange} focused />
             </FormControl>
-                <Button sx={{ my:2 }} variant="contained" type="submit" name="Update" id="update">Update Profile</Button>
+                <Button sx={{ my:2, background: '#E44C62' }} variant="contained" type="submit" name="Update" id="update">Update Profile</Button>
             </form>
             </Container>
 

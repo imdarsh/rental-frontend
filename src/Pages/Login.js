@@ -47,7 +47,7 @@ function Login() {
     return(
         <Box>
         <Navbar />
-        <Container sx={{ my:2 }}>
+        <Container sx={{ my:2, height: '100%'}}>
             <Typography variant="h5" sx={{ my:2, textAlign:'center' }}>Login</Typography>
             { error && <Alert severity="error">{error}</Alert>}      
             <Typography variant="h5" sx={{textAlign:'center'}}>{ loading && <Loading />}</Typography>
@@ -58,7 +58,7 @@ function Login() {
             <FormControl sx={{ my:2 }} fullWidth={true}>
                 <TextField label="Password" id="password" type="password" size="small" name="password" value={user.password} onChange={handleChange} />
             </FormControl>
-            <Button variant="contained" type="submit" sx={{ my:2 }}>Login</Button>
+            <Button variant="contained" type="submit" sx={{ my:2, background: '#E44C62' }}>Login</Button>
             </form>
             <Divider />
             <Typography sx={{ my:2 }}>

@@ -65,7 +65,7 @@ function DetailsPage() {
                     <Typography variant="h6" component="span" sx={{mx:2, fontWeight: 'bold'}}>Deposit: &#8377;{allProducts.deposit}</Typography>
                 </Typography>
             <Typography>            
-                <Button sx={{ mx: 2, my: 2, width: '90%' }} variant="contained" onClick={getOnRent} >Get on Rent</Button>
+                <Button sx={{ mx: 2, my: 2, width: '90%', background: '#E44C62' }} variant="contained" onClick={getOnRent} >Get on Rent</Button>
             </Typography>    
                 <Typography sx={{ mx: 2 }} variant="body1">
                     {allProducts.description}
