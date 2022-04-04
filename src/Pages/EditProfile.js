@@ -67,7 +67,7 @@ function EditProfile() {
         <div>
             <Navbar />
             <Typography textAlign="center" fontWeight="bold" variant="h5" sx={{ my:2 }}>Edit Profile</Typography>
-            <Container>
+            <Container sx={{ minHeight: 'calc(100vh - 180px)' }}>
                 <Divider sx={{ background: 'black' }} />
                 <Typography variant="h5" sx={{textAlign:'center'}}>{ loading && <Loading />}</Typography>
                 <form onSubmit={updateProfile} id="edit-profile">

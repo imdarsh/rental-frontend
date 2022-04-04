@@ -11,9 +11,11 @@ function DetailsPage() {
     const [allProducts, getAllProducts] = useState({
         name: "", price: "", deposit: "", description: "", category: "", image: ""
     });
+    const [latestProducts, getLatestProducts] = useState([]);
 
     useEffect(() => {
         getProducts();
+        getLatest();
     },[]);
 
     let navigate = useNavigate();
@@ -32,6 +34,17 @@ function DetailsPage() {
         console.log(error);
         })
     }
+
+    const getLatest = async () => {
+        await axios.get('http://localhost:4000/api/v1/latest-products')
+        .then(function (response) {
+            getLatestProducts(response.data.products);
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
+    }
+
 
     const getOnRent = () => {
         if(localStorage.getItem('token')) {
@@ -71,6 +84,17 @@ function DetailsPage() {
                     {allProducts.description}
                 </Typography>
             </Grid>
+            </Grid>
+            <Divider />
+            <Typography sx={{ mt:2, mb:1 }} variant="h5">Latest Products</Typography>
+            
+            <Grid container spacing={{ xs: 0, md: 2 }} columns={{ xs: 2, sm: 8, md: 12 }}>
+            
+            {latestProducts.map((product, index) => (
+                <Grid item xs={2} sm={3} md={3} key={index}>
+                <ProductCard key={index} product={product} />
+                </Grid>
+            ))}
             </Grid>
             </Container>
             <Footer />

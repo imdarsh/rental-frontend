@@ -17,7 +17,7 @@ function RenterNavbar() {
 
     return(
       <Box>
-        <AppBar position="relative">
+        <AppBar position="relative"  sx={{ background: '#E44C62' }} >
             <Toolbar>
             <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
                 <Link to="/renter/dashboard"  style={{ color: 'white', textDecoration: 'none' }} >

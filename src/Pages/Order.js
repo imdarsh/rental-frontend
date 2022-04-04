@@ -69,7 +69,7 @@ function Orders() {
     return (
         <div>
             <Navbar />
-            <Container>
+            <Container sx={{ minHeight: 'calc(100vh - 100px)' }}>
             <Grid container spacing={{ xs: 2, md: 3 }} sx={{ m: 2 }} columns={{ xs: 2, sm: 8, md: 12 }}>
             <Grid item xs={6} md={4} sx={{ textAlign:'center' }}>
             <Box component="img" sx={{
@@ -104,7 +104,7 @@ function Orders() {
             </Grid>
             <Typography sx={{ fontWeight: 'bold', my: 2 }} textAlign="center" variant="h5">Total: &#8377;{parseInt(order.deposit)+parseInt(order.price)}</Typography>
             <Typography>            
-                <Button sx={{ my: 2, width: '90%' }} variant="contained" onClick={checkout}>Proceed to Rent</Button>
+                <Button sx={{ my: 2, width: '90%',background: '#E44C62' }} variant="contained" onClick={checkout}>Proceed to Rent</Button>
             </Typography>  
             </Container>
             <Footer />

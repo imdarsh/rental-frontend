@@ -51,7 +51,7 @@ function ChangePassword() {
         <div>
             <Navbar />
             <Typography textAlign="center" variant="h5" fontWeight="bold" sx={{ my:2 }}>Change Password</Typography>
-            <Container>
+            <Container sx={{ minHeight: 'calc(100vh - 192px)'}}>
                 <Divider sx={{ background: 'black' }} />
                 { error && <Alert sx={{ my:2 }} severity="error">{error}</Alert>}      
                 <Typography variant="h5" sx={{textAlign:'center'}}>{ loading && <Loading />}</Typography>

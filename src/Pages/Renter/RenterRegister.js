@@ -53,7 +53,7 @@ function RenterRegister() {
     return(
         <div>
             <RenterNavbar />
-            <Container sx={{my: 2}}>
+            <Container sx={{ minHeight: 'calc(100vh - 158px)',  my:2 }}>
             <Typography variant="h5" sx={{textAlign:'center'}}>Renter Register</Typography>
             { error && <Alert severity="error">{error}</Alert>}      
             <Typography variant="h5" sx={{textAlign:'center'}}>{ loading && <Loading />}</Typography>
@@ -79,7 +79,7 @@ function RenterRegister() {
             <FormControl sx={{ my:2 }} fullWidth={true}>
                 <TextField label="Password" id="password" type="password" size="small" name="password" value={renter.password} onChange={handleChange} />
             </FormControl>
-                <Button variant="contained" type="submit" name="register" id="register">Register</Button>
+                <Button sx={{ background: '#E44C62' }} variant="contained" type="submit" name="register" id="register">Register</Button>
                 </form>
                 <Divider sx={{ my: 2 }} />
                 <Link to="/renter/renter-login">Already have an account? Login</Link>

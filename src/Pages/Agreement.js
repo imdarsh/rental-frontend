@@ -51,7 +51,7 @@ function Agreement() {
     return(
         <div>
             <Navbar />
-            <Container>
+            <Container sx={{ minHeight: 'calc(100vh - 144px)' }}>
                 <Typography variant='h4' sx={{ textAlign: 'center', my: 2 }}>
                     Agreement
                 </Typography>
@@ -74,7 +74,7 @@ function Agreement() {
                         <FormControlLabel onClick={handleDisabled} value="I accept all the terms and conditions." control={<Radio size="small" />} label="I accept all the terms and conditions." />
                         <FormControlLabel onClick={handleEnabled} value="I do not accept all the terms and conditions." control={<Radio size="small" />} label="I do not accept all the terms and conditions." />
                     </RadioGroup>
-                    <Button variant="contained" sx={{ my:2 }} onClick={handleClick} disabled={disabled}>Continue</Button>
+                    <Button variant="contained" sx={{ my:2, background: '#E44C62' }} onClick={handleClick} disabled={disabled}>Continue</Button>
                 </Typography>
             </Container>
             <Footer />

@@ -67,7 +67,7 @@ function UpdateProduct() {
     return(
         <div>
         <RenterNavbar />
-        <Container sx={{ my:2 }}>
+        <Container sx={{ my:2, minHeight: 'calc(100vh - 158px)' }}>
             <Typography variant="h5" sx={{ textAlign: 'center' }}>Create Product</Typography>
             { error && <Alert severity="error">{error}</Alert>}   
             <form id="create-product" onSubmit={editProduct}>

@@ -53,7 +53,7 @@ function CreateProduct() {
     return(
         <div>
         <RenterNavbar />
-        <Container sx={{ my:2 }}>
+        <Container sx={{ my:2, minHeight: 'calc(100vh - 158px)' }}>
             <Typography variant="h5" sx={{ textAlign: 'center' }}>Create Product</Typography>
             { error && <Alert severity="error">{error}</Alert>}   
             <form id="create-product" onSubmit={addProduct}>
@@ -90,7 +90,7 @@ function CreateProduct() {
                     <FormLabel>Upload Image</FormLabel>
                     <TextField type="file" name="image" id="image" size="small" onChange={handleUpload} />
                 </FormControl>
-                <Button variant="contained" size="small" type="submit">Create Product</Button>
+                <Button variant="contained" size="small" type="submit" sx={{ background: '#E44C62' }}>Create Product</Button>
             </form>
         </Container>
         <Footer />

@@ -53,7 +53,7 @@ function Register() {
     return(
         <div>
             <Navbar />
-            <Container sx={{my: 2}}>
+            <Container sx={{ minHeight: 'calc(100vh - 144px)', my:2 }}>
             <Typography variant="h5" sx={{textAlign:'center'}}>Register</Typography>
             { error && <Alert severity="error">{error}</Alert>}      
             <Typography variant="h5" sx={{textAlign:'center'}}>{ loading && <Loading />}</Typography>

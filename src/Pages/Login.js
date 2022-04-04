@@ -45,9 +45,9 @@ function Login() {
     }
 
     return(
-        <Box>
+        <Box >
         <Navbar />
-        <Container sx={{ my:2, height: '100%'}}>
+        <Container sx={{ minHeight: 'calc(100vh - 272px)', marginTop: '144px' }}>
             <Typography variant="h5" sx={{ my:2, textAlign:'center' }}>Login</Typography>
             { error && <Alert severity="error">{error}</Alert>}      
             <Typography variant="h5" sx={{textAlign:'center'}}>{ loading && <Loading />}</Typography>

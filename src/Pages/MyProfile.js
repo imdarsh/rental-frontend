@@ -48,7 +48,7 @@ function MyProfile() {
         <div>
             <Navbar />
             <Typography variant="h5" textAlign="center" sx={{ my:2 }}>Profile</Typography>
-            <Container>
+            <Container sx={{ minHeight: 'calc(100vh - 300px)', marginTop: '144px' }}>
             <Divider sx={{ background: 'black' }} />
             <Typography variant="h3" sx={{textAlign:'center'}}>{ loading && <Loading />}</Typography>
             <Typography sx={{ my:2 }} fontWeight="bold">Profile Details:</Typography>

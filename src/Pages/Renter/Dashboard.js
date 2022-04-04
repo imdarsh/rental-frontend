@@ -49,7 +49,7 @@ function Dashboard() {
                 <Typography variant="h4" sx={{ textAlign:'center', my:2 }}>
                     Renter Dashboard
                 </Typography>
-                <Container  sx={{ my:2 }}>
+                <Container  sx={{ my:2, minHeight: 'calc(100vh - 210px)' }}>
                 { error && <Alert sx={{ my:2 }} severity="info">{error}</Alert>} 
                 <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
