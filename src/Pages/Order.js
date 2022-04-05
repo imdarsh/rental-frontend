@@ -3,6 +3,7 @@ import Navbar from '../Components/Navbar';
 import Footer from '../Components/Footer';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+// import Razorpay from 'razorpay';
 import { Grid, Box, Card, Button, Typography, Container, CardMedia, Divider } from '@mui/material';
 
 function Orders() {
@@ -27,7 +28,7 @@ function Orders() {
     const getOrder = async () => {
         await axios.get(`http://localhost:4000/api/v1/products/${id}`)
         .then(function (response) {
-            console.log(response.data.product);
+            // console.log(response.data.product);
             setOrder(response.data.product);
         })
         .catch(function (error) {
@@ -40,12 +41,32 @@ function Orders() {
         let userId = JSON.parse(localStorage.getItem('user')).userId;
         await axios.get(`http://localhost:4000/api/v1/getUser-id/${userId}`)
         .then(function (response){
-            console.log(response.data.user);
+            // console.log(response.data.user);
             setUser(response.data.user);
         })
         .catch(function (error){
             console.log(error);
         })
+    }
+
+    const initPayment = async (data) => {
+        const options = {
+            key: 'rzp_test_kKwktbgfeMOXXx',
+            amount: data.amount,
+            currency: data.currency,
+            order_id: data.id,
+            receipt: data.receipt,
+            handler: async(response) => {
+                const verifyUrl = "http://localhost:4000/api/v1/payment/verify";
+                const { data } = await axios.post(verifyUrl, response);
+                if(data) {
+                    navigate('/success');
+                }
+            }
+        }
+
+        const rzp1 = new window.Razorpay(options);
+        rzp1.open();
     }
 
     // checkout
@@ -54,16 +75,12 @@ function Orders() {
         const orders = {
             userId: JSON.parse(localStorage.getItem('user')).userId,
             productId: id,
-            total: totals
+            amount: totals
         }
 
-        await axios.post(`http://localhost:4000/api/v1/orders/${id}`, orders, {mode: 'cors'})
-        .then(function (response) {
-            navigate(`/success`);
-        })
-        .catch(function (error) {
-            console.log(error);
-        })
+        const data = await axios.post(`http://localhost:4000/api/v1/orders/${id}`, orders, {mode: 'cors'})
+        console.log(data.data.order.amount);
+        initPayment(data.data.order);
     }
 
     return (
