@@ -49,7 +49,9 @@ function Orders() {
         })
     }
 
-    const initPayment = async (data) => {
+    const initPayment = async (data, orders) => {
+        console.log(orders);
+        console.log(data);
         const options = {
             key: 'rzp_test_kKwktbgfeMOXXx',
             amount: data.amount,
@@ -58,15 +60,31 @@ function Orders() {
             receipt: data.receipt,
             handler: async(response) => {
                 const verifyUrl = "http://localhost:4000/api/v1/payment/verify";
-                const { data } = await axios.post(verifyUrl, response);
-                if(data) {
-                    navigate('/success');
+                const { datas } = await axios.post(verifyUrl, response);
+                const info = {
+                    userId: orders.userId,
+                    productId: orders.productId,
+                    receipt: data.receipt,
+                    currency: 'INR',
+                    total: orders.amount
                 }
+               saveOrders(info);
             }
         }
 
         const rzp1 = new window.Razorpay(options);
         rzp1.open();
+    }
+
+    //save orders
+    const saveOrders = async (info) => {
+        await axios.post('http://localhost:4000/api/v1/save-order',info,{mode: 'cors' })
+        .then(function (response){
+            navigate('/success');
+        })
+        .catch(function (error){
+            console.log(error);
+        })
     }
 
     // checkout
@@ -79,8 +97,8 @@ function Orders() {
         }
 
         const data = await axios.post(`http://localhost:4000/api/v1/orders/${id}`, orders, {mode: 'cors'})
-        console.log(data.data.order.amount);
-        initPayment(data.data.order);
+        // console.log(data.data);
+        initPayment(data.data.order, orders);
     }
 
     return (

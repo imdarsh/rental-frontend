@@ -21,7 +21,6 @@ function MyOrders() {
 
         await axios.get(`http://localhost:4000/api/v1/myorders/${userId}`)
         .then(function (response){
-            console.log(response.data);
             setOrders(response.data.orders);
             setProducts(response.data.products);
             setLoading(false);

@@ -19,7 +19,6 @@ function Category() {
     const getCategory = async () => {
         await axios.get(`http://localhost:4000/api/v1/category/${category}`)
         .then(function (response){
-            console.log(response.data);
             setProducts(response.data.products);
         })
         .catch(function (error) {
